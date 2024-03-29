@@ -182,8 +182,15 @@ export default class ContextMenu {
 // Listen for contextmenu event to show menu
 document.addEventListener('contextmenu', (e) => {
   instances.forEach((menu) => {
-    if (e.target.matches(menu.selector)) {
-      menu.show(e);
+    var counter = 0;
+    var target = e.target;
+    while (counter < 5) {
+      if (target.matches(menu.selector)) {
+        menu.show(e);
+        break;
+      } else {
+        target = target.parentElement;
+      }
     }
   });
 });
