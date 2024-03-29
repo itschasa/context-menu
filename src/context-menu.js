@@ -190,6 +190,7 @@ document.addEventListener('contextmenu', (e) => {
         break;
       } else {
         target = target.parentElement;
+        counter++;
       }
     }
   });
