@@ -19,7 +19,7 @@ export default {
       file: pkg.main,
       format: 'umd',
       name: pkg.moduleName,
-      sourcemap: true,
+      sourcemap: false,
     },
   ],
 };

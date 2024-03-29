@@ -90,7 +90,7 @@ export default class ContextMenu {
         li.className = 'ContextMenu-divider';
       } else {
         li.className = 'ContextMenu-item';
-        li.textContent = item.name;
+        li.innerHTML = item.name;
         li.setAttribute('data-contextmenuitem', index);
         li.setAttribute('tabindex', 0);
         li.addEventListener('click', this.select.bind(this, li));
@@ -99,6 +99,9 @@ export default class ContextMenu {
             this.select(li);
           }
         });
+        if (item.disabled == true) {
+          li.classList.add('ContextMenu-item--disabled');
+        }
       }
 
       this.menu.appendChild(li);
@@ -108,6 +111,12 @@ export default class ContextMenu {
     document.body.appendChild(this.menu);
 
     emit(this.menu, 'created');
+  }
+
+  setItems(items) {
+    this.items = items;
+    this.menu.remove();
+    this.create();
   }
 
   // Shows context menu
